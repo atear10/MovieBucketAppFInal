@@ -1,0 +1,21 @@
+.width-100{
+	width:200px;
+}
+.border-red{
+	border: 1px solid red;
+}
+.border-green{
+	border: 1px solid green;
+}
+.border-blue{
+	border: 1px solid blue;
+}
+.border-grey{
+	border: 2px solid grey;
+}
+.inline-block{
+	display: inline-block;
+}
+.middle{
+	vertical-align: middle;
+}

@@ -1,0 +1,128 @@
+﻿
+<div class="PageBlock" style="margin-top:-4%">
+    
+    <div class="login-text font-calibri">
+        <div class="login-text font-calibri">
+            <div class="row">
+                <div class="col-md-5">
+                    <div style="border-right:1px medium lightgrey; margin:10% 5px;">
+                        <div style="margin: 40px 10px 10px 10px; border: 2px solid black; width:73%;height: 45%">
+                            <img ng-src="data:image/jpeg;base64,{{image}}" id="photo-id" style="width:100%;height: 100%" />
+                        </div>
+                        <div style="margin:10px">
+                            <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload" />
+                        </div>
+                    </div>
+                    <div style="margin-left:-50px;">
+                        <button id="addActor" class="btn btn-info" style="width:40%" ngclick="clickedButton='actor'">Add Actor</button>
+                        <button id="addProducer" class="btn btn-info" ngclick="clickedButton='actor'">Add Producer</button>
+                    </div>
+                </div>
+                <div class="col-md-7" style="margin-top:2%;">
+                    <div class="form-inline">
+                        <div class="col-form-label-lg form-group" width="30px" style="width:30%; margin:3px"><strong>Movie Name:</strong></div>
+                        <div class="form-check-input form-group" style="width:60%;margin:3px">
+                            <input ng-model="data.movie_name" type="text" placeholder="Enter Movie Name" class="input-text" /><br /><br />
+                        </div>
+                    </div>
+                    <div class="form-inline">
+                        <div class="col-form-label-lg form-group" width="30px" style="width:30%; margin:3px"><strong>Release Year:</strong
+
+></div>
+                        <div class="form-check-input form-group" style="width:60%;margin:3px">
+                            <select ng-model="data.year_of_release" placeholder="Select Year of Release" class="input-text select" ng-options="year for year in years"></select>
+                        </div>
+                    </div>
+                    <div class="form-inline">
+                        <div class="col-form-label-lg form-group" width="30px" style="width:30%; margin:3px"><strong>Plot:</strong></div>
+                        <div class="form-check-input form-group" style="width:60%;margin:3px">
+                            <input ng-Model="data.plot" type="text" placeholder="Enter Plot" class="input-text" /><br /><br />
+                        </div>
+                    </div>
+                    <div class="form-inline">
+                        <div class="col-form-label-lg form-group" style="width:30%; margin:3px"><strong>Producer:</strong></div>
+                        <div class="form-check-input form-group" style="width:60%;margin:3px">
+                            <select ng-model="data.producer" placeholder="Enter Plot" class="input-text" ng-options="prod as prod.name for prod in producerList" />
+                        </div>
+                    </div>
+                    <div class="form-inline">
+                        <div class="col-form-label-lg form-group" style="width:30%;margin:3px"><strong>Actor:</strong></div>
+                        <div class="form-check-input form-group" style="width:60%;margin:3px">
+                            <select ng-model="data.actors" style="height:100px" class="input-text" multiple="multiple" ng-options="act as act.name for act in actorList" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-right:auto;">
+                <button class="btn btn-primary" style="width:20% " ng-click="submit()">Submit</button>
+            </div>
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td style="width:40%"><strong>Name : </strong></td>
+                                <td colspan="2"> <input type="text" id="name" class="input-text" ng-model="actorData.name" /></td>
+                            </tr>
+                            <tr>
+                                <td><strong>sex :</strong></td>
+                                <td><input type="text" id="name" class="input-text" ng-model="actorData.sex" /></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date of Birth :</strong></td>
+                                <td><input type="date" id="name" class="input-text" ng-model="actorData.date_of_birth" /></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bio :</strong></td>
+                                <td><input type="text" id="name" class="input-text" ng-model="actorData.bio" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div >
+                        <button id="modalbtnadd"class="btn btn-primary" style="width:10%" ng-click="addActor(actorData)">
+                            Add
+                        </button>
+                    </div>
+                    <div >
+                        <button id="modalbtnprod" class="btn btn-primary" style="width:10%" ng-click="addProducer(actorData)">
+                            Add
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var modal = document.getElementById('myModal');
+    var btn = document.getElementById("addActor");
+    var prodbtn = document.getElementById("addProducer");
+    var span = document.getElementsByClassName("close")[0];
+    var modalbtnadd = document.getElementById("modalbtnadd");
+    var modalbtnprod = document.getElementById("modalbtnprod");
+    btn.onclick = function () {
+        modal.style.display = "block";
+        modalbtnadd.style.visibility = 'visible';
+        modalbtnprod.style.visibility = 'hidden';
+    }
+    prodbtn.onclick = function () {
+        modal.style.display = "block";
+        modalbtnadd.style.visibility = 'hidden';
+        modalbtnprod.style.visibility = 'visible';
+    }
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

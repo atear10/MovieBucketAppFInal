@@ -1,0 +1,126 @@
+﻿<html ng-app="portal">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/temp.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="scripts/angular.js"></script>
+    <script type="text/javascript" src="js/angular-route.min.js"></script>
+    <script type="text/javascript" src="scripts/angular-local-storage.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+    <script type="text/javascript" src="js/tether.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-dropdown-multiselect/1.11.8/angularjs-dropdown-multiselect.min.js"></script>
+    <script src="js/portalApp.js"></script>
+    <script src="js/portalConfig.js"></script>
+    <script src="js/portalController.js"></script>
+    <script type="application/javascript" src="js/custom.js"></script>
+    <script src="scripts/dirPagination.js"></script>
+    <link href="css/glyphicon.css" rel="stylesheet" />
+    <base href="/">
+    <title>Movie Bucket</title>
+</head>
+
+<body>
+
+    <!--<div class="sidenav bg-inverse">
+        <a class="navbar-brand mynav-brand" href="#"><span>&#x26DD;</span></a>
+        <a href="#page1" class="sidenav-root-item">☰</a>
+    </div>-->
+    <div class="container-fluid">
+
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse mynav">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--<a class="navbar-brand mynav-brand" href="#"><span class="glyphicons glyphicons-show-thumbnails"></span></a>-->
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto" style="display:inherit;padding-left:10%">
+                    <li class="nav-item  active">        
+                            <span style="font-size:xx-large;color:white"><strong>Movie Bucket</strong></span>
+                    </li>
+                    <!--<li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>-->
+                </ul>
+                <ul class="navbar-nav justify-content-end">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="LandingPage.html#login">
+                            <span class="glyphicons glyphicons-user"></span> Login
+                        </a>
+                    </li>
+                    <li class="social">
+
+                        <a href="/offsite/?page-action=fol_fb&amp;token=BCYlwQIdE1jUdKEsHcIfzSpAyDkil6jS4cS_MbhuP8frUl--ta9JyMVZGfPb3vPmdkRm9oTyV9d7%0D%0AdGoWgszGlZEqAeDrWmCZtjjXKmr8hGrIgKehPt-z-Bxccn81k0-reY09Ufiubnl8PqzaGAEziPb4%0D%0AYg3_R6b3eiY0AB6LZsAzxhGQZt6Kr-hajIEK3DQQ0gEX1aPOyD-eLNpsGMptAWJFiA%0D%0A&amp;ref_=hm_nv_fol_fb" title="Follow IMDb on Facebook" target="_blank" itemprop="url">
+                            <span class="desktop-sprite follow-facebook"></span>
+                        </a>
+                        <a href="/offsite/?page-action=fol_tw&amp;token=BCYrI35N6nsAY5z767a2X9-gLPnWHm4Do_8vy9VzQSKljagEgOnv3yekIpZkbotkwFDb5PiZNzcb%0D%0AeyLL-v5i7HsxN9LDJLQO55cSsszyPcfl5r5AyXUp0lh7Py5UjCp2ZbsaFdmTRxn_G_U-Cse9LcG6%0D%0ABkgQrEoWW4cp55SivAZr9EftinL2Z3N-ziZgj7q9k_PG%0D%0A&amp;ref_=hm_nv_fol_tw" title="Follow IMDb on Twitter" target="_blank" itemprop="url">
+                            <span class="desktop-sprite follow-twitter"></span>
+                        </a>
+                        <a href="/offsite/?page-action=fol_inst&amp;token=BCYhgaRw9Vx8Tv5t94H8w1vt5P1vdV-OhP_vMowfwyHVBNMTW-jk_ELN37kO_LSR3Bbybd_uXHln%0D%0AGsPBb5bvK_fmV9J5v84l-NvXaJ6F2FTWgbP7imr-fvuYNprAfNbAWxrj5d1CCuu-CoUMGCZDWRx_%0D%0A8ihCZsH_54XnQI-KXh13A9DSvHXvo6T8xftYhKm4wnHn%0D%0A&amp;ref_=hm_nv_fol_inst" title="Follow IMDb on Instagram" target="_blank" itemprop="url">
+                            <span class="desktop-sprite follow-instagram"></span>
+                        </a>
+                    </li>
+                </ul>
+                <!--<span class="navbar-text">
+                Navbar text with an inline element
+            </span>-->
+            </div>
+        </nav>
+        <div >
+            <div class="row" style="background-color:black">
+                <div class="col-md-2">
+                    <img src="images/gringo.jpg" class="img-fluid small" />
+                </div>
+                <div class="col-md-2">
+                    <img src="images/deathwish.jpg" class="img-fluid small" />
+                </div>
+                <div class="col-md-2">
+                    <img src="images/Foxtrot.jpg" class="img-fluid small" />
+                </div>
+                <div class="col-md-2">
+                    <img src="images/Red Sparrow.jpg" class="img-fluid small" />
+                </div>
+                <div class="col-md-2">
+                    <img src="images/thestrangers.jpg" class="img-fluid small" />
+                </div>
+                <div class="col-md-2">
+                    <img src="images/WrinkleIntime.jpg" class="img-fluid small" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-2 menu-div">
+                    <a href="/">HOME</a>
+                </div>
+                <div class="col-md-2 menu-div">
+                    <a href="/addmovie">ADD MOVIES</a>
+                </div>
+                <div class="col-md-2 menu-div">
+                    <a href="/addmovie">ADD ACTOR</a>
+                </div>
+                <div class="col-md-2 menu-div">
+                    <a href="/addmovie">ADD PRODUCER</a>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
+            
+            <!-- Page block -->
+            <div class="mypage" ng-controller="container">
+                <br />
+                <br />
+                <div  ng-view></div>
+            </div>
+        </div>
+</div>
+</body>
+
+</html>

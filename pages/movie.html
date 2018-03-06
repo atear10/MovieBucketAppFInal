@@ -1,0 +1,148 @@
+﻿<div class="PageBlock" style="margin-top:-4%">
+    <div class="login-text font-calibri">
+        <div class="login-text font-calibri">
+            <div class="">
+                <input type="text" class="form-control" ng-model="search" placeholder="Quick Find" style="width:300px;margin-left:auto;margin-right:15px;" />
+            </div>
+            <div class="row movie-seperator" dir-paginate="data in dataList|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                <!--<div class="row movie-seperator" ng-repeat="data in dataList">-->
+                <div style="margin-right: 10%">
+                    <table cellspacing="0" cellpadding="0" border="0" class="nm-title-overview-widget-layout">
+                        <tbody>
+                            <tr>
+                                <td rowspan="2" valign="top" id="img_primary">
+                                    <div class="image">
+                                        <a href="#">
+                                            <div class="hover-over-image zero-z-index">
+                                                <img class="poster shadowed"
+                                                     height="209"
+                                                     width="140"
+                                                     alt="{{data.movie_name}} Poster"
+                                                     title="{{data.movie_name}} ({{data.year_of_release}})"
+                                                     ng-src="data:image/jpeg;base64,{{data.poster}}"
+                                                     itemprop="image" />
+                                            </div>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td class="overview-top">
+                                    <h4 itemprop="name">
+                                        <a href="#"
+                                           title="{{data.movieName}} (2018)" itemprop='url'>{{data.movie_name | uppercase}}&nbsp;({{data.year_of_release}})</a>
+                                    </h4>
+                                    <div class="txt-block form-inline">
+                                        <div class="form-group"><h5 style="margin-right:15%">Plot:</h5></div>
+                                        <div class="form-group">
+                                            <button class="btn btn-link">
+                                                {{data.plot}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="txt-block form-inline">
+                                        <div class="form-group"><h5 style="margin-right:15%">Producer:</h5></div>
+                                        <div class="form-group">
+                                            <button id="btn-producer" class="btn btn-link" ng-click="redirectProducerEdit(data.producer)"
+                                                    style="cursor:pointer">
+                                                {{data.producer.name}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="txt-block form-inline">
+                                        <div class="form-group"><h5 class="inline">Stars:</h5></div>
+                                        <div class="form-group" ng-repeat="act in data.Actors">
+                                            <button id="btn-actor" class="btn btn-link" style="cursor:pointer" ng-click="redirectEditActor(act)">{{act.name}},</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!--<div class="col-md-5 movie-div" ng-repeat="data in datagroup">-->
+                </div>
+                <div style="float:right;display:block">
+                    <button class="btn btn-link" ng-click="redirectEdit(data)">Edit</button>
+                    <button class="btn btn-link" ng-click="deleteMovie(data)">Delete</button>
+
+                </div>
+            </div>
+            <div style="margin-left:32%;margin-top:20px; height: 100px;">
+                <dir-pagination-controls max-size="10"
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+            </div>
+            <div id="ModalEdit" class="modal" ng-style="displayEdit">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td style="width:40%"><strong>Name : </strong></td>
+                                <td colspan="2"> <input type="text" id="name" class="input-text" ng-model="editData.name" /></td>
+                            </tr>
+                            <tr>
+                                <td><strong>sex :</strong></td>
+                                <td><input type="text" id="name" class="input-text" ng-model="editData.sex" /></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date of Birth :</strong></td>
+                                <td><input type="date" id="name" class="input-text" ng-model="editData.date_of_birth" /></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bio :</strong></td>
+                                <td><input type="text" id="name" class="input-text" ng-model="editData.bio" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <button id="modalbtnEdit" class="btn btn-primary" style="width:10%" ng-click="">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div id="ModalInfo" class="modal" ng-style="displayInfo">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td><strong>Name : </strong></td>
+                                <td> <strong>{{editData.name}}</strong></td>
+                            <tr>
+                                <td><strong>sex :</strong></td>
+                                <td><strong>{{editData.sex}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date of Birth :</strong></td>
+                                <td><strong>{{editData.date_of_birth}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>{{editData.bio}}</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <button id="modalbtnEdit" class="btn btn-primary" style="width:10%">
+                            Edit
+                        </button>
+                        <button id="modalbtnDelete" class="btn btn-primary" style="width:10%" ng-click="DeleteRole(editData)">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

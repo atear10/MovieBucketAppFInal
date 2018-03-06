@@ -1,0 +1,18 @@
+﻿
+<div class="page-block">
+    <span style="text-align:left;display:block;padding-left:10px;">ALL APPS</span>
+    <span style="text-align:right;font-size:10px;display:block;padding-right:10px;"><a href='#' ng-click="getRowLimit()">{{ HeaderText }}</a></span>
+    <div class="row" ng-repeat="packet in Packages | limitTo : limit">
+        <div class="col-md-2" ng-repeat="item in packet">
+            <div class="panel">
+                <div class="appbox-pic" ng-style="{ 'background':colours[$index]}">
+                    <img class="iconimage" src="images/msdynamics.png" />
+                </div>
+                <span class="fontLargeBold">{{ item.PkgName | uppercase }}</span><br />
+                by {{ item.PublisherName }} <br />
+                {{ item.PkgType }}<br /><br />
+                <div class="padding-box"><p> {{ item.PkgDescription }} </p></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+C:\Users\Kishore\source\repos\MovieBucketApp\MovieBucketApp\bin\MovieBucketApp.dll.config
+C:\Users\Kishore\source\repos\MovieBucketApp\MovieBucketApp\bin\MovieBucketApp.dll
+C:\Users\Kishore\source\repos\MovieBucketApp\MovieBucketApp\bin\MovieBucketApp.pdb
+C:\Users\Kishore\source\repos\MovieBucketApp\MovieBucketApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Kishore\source\repos\MovieBucketApp\MovieBucketApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Kishore\source\repos\MovieBucketApp\MovieBucketApp\obj\Debug\MovieBucketApp.csprojResolveAssemblyReference.cache
+C:\Users\Kishore\source\repos\MovieBucketApp\MovieBucketApp\obj\Debug\MovieBucketApp.csproj.CoreCompileInputs.cache
+C:\Users\Kishore\source\repos\MovieBucketApp\MovieBucketApp\obj\Debug\MovieBucketApp.dll
+C:\Users\Kishore\source\repos\MovieBucketApp\MovieBucketApp\obj\Debug\MovieBucketApp.pdb
