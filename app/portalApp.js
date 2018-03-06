@@ -20,18 +20,19 @@ portalApp.factory("chunks", function () {
 portalApp.service('global', ['$http',function ($http) {
     var self = this;
     self.years = [];
-  $http.get("http://localhost:60011/api/Producer").then(function (response) {
+    self.url = "http://moviebucketwebapi.apphb.com/"
+  $http.get(self.url + "api/Producer").then(function (response) {
         console.log(response);
         self.producerList = response.data;
     })
-     $http.get("http://localhost:60011/api/Actor").then(function (response) {
+     $http.get(self.url + "api/Actor").then(function (response) {
         console.log(response);
         self.actorList = response.data;
     })
     for(var i = 2018; i >= 1950; i--) {
         self.years.push(i);
     }
-    self.url = "http://moviebucketwebapi.apphb.com/"
+    
 }]);
 
 
