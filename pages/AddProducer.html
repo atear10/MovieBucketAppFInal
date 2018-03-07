@@ -1,0 +1,38 @@
+﻿<div class="PageBlock" style="margin-top:-4%">
+
+    <div class="login-text font-calibri">
+        <div class="login-text font-calibri">
+            <div>
+                <span class="close">&times;</span>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td style="width:40%"><strong>Name : </strong></td>
+                        <td colspan="2"> <input type="text" id="name" class="input-text" ng-model="actorData.name" /></td>
+                    </tr>
+                    <tr>
+                        <td><strong>sex :</strong></td>
+                        <td><input type="text" id="name" class="input-text" ng-model="actorData.sex" /></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Date of Birth :</strong></td>
+                        <td><input type="date" id="name" class="input-text" ng-model="actorData.date_of_birth" /></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bio :</strong></td>
+                        <td><textarea id="name" class="input-text" ng-model="actorData.bio" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="alert-success" ng-if="successMessage != ''"><p>{{successMessage}}</p></div>
+            <div class="alert-danger" ng-if="errorMessage != ''"><p>{{errorMessage}}</p></div>
+            <div>
+                <button id="modalbtnprod" class="btn btn-primary" style="width:10%" ng-click="addProducer(actorData)">
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -21,6 +21,14 @@
             templateUrl: "pages/update.html",
             controller: "update"
         })
+        .when('/AddActor', {
+            templateUrl: "pages/AddActor.html",
+            controller: "AddActor"
+        })
+        .when('/AddProducer', {
+            templateUrl: "pages/AddProducer.html",
+            controller: "AddProducer"
+        })
         .otherwise({
             templateUrl: "pages/movie.html",
             controller: "movie"

@@ -1,10 +1,11 @@
 ﻿<div class="PageBlock" style="margin-top:-4%">
+    <div class="modal" style="display:block" ng-if="!dataList"><div class="justify-content-center" ><img style="height:100px;width:100px;margin-top:300px" src="../images/ZKZg.gif" class="float-lg-none" /></div></div>
     <div class="login-text font-calibri">
         <div class="login-text font-calibri">
             <div class="">
                 <input type="text" class="form-control" ng-model="search" placeholder="Quick Find" style="width:300px;margin-left:auto;margin-right:15px;" />
             </div>
-            <div class="row movie-seperator" dir-paginate="data in dataList|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+            <div class="row movie-seperator" dir-paginate="data in dataList|filter:search|itemsPerPage:3">
                 <!--<div class="row movie-seperator" ng-repeat="data in dataList">-->
                 <div style="margin-right: 10%">
                     <table cellspacing="0" cellpadding="0" border="0" class="nm-title-overview-widget-layout">

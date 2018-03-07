@@ -7,6 +7,7 @@
     .controller('addmovie', ['$scope', '$http', '$log', 'global', '$location', 'localStorageService','chunks',
         function ($scope, $http, $log, global, $location, localStorageService, chunks) {
             $scope.successMessage = '';
+            $scope.errorMessage = '';
             $scope.data = {
                 "movie_name": "",
                 "plot": "",
@@ -14,7 +15,6 @@
                 "producer_id": "",
                 "actors": [],
                 "year_of_release": "",
-                "poster": ""
             }
             if (global.movieData != undefined) {
                 
@@ -62,14 +62,21 @@
                 }
                 else {
                     $scope.data.producer_id = $scope.data.producer.producer_id;
+                    //$scope.image = $scope.data.poster;
                     console.log($scope.data)
                     $http({
                         url: global.url + "api/movies",
                         data: $scope.data,
                         method: "PUT"
-                    }).then(function () {
+                    }).then(function (response) {
+                        $scope.errorMessage = '';
+                        $scope.successMessage = "Movie added Successfully to Database"
+                        $location.url("/");
                         console.log("Success");
-                    }, function () {
+                        }, function (response, error) {
+                            console.log(response)
+                            $scope.successMessage = '';
+                            $scope.errorMessage = "Failed to add movie to list : " + error;
                         console.log("failed");
                     });
                 }
@@ -81,22 +88,9 @@
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
                     reader.onload = function (e) {
-
                         //Sets the Old Image to new New Image
                         $('#photo-id').attr('src', e.target.result);
-
-                        //Create a canvas and draw image on Client Side to get the byte[] equivalent
-                        var canvas = document.createElement("canvas");
-                        var imageElement = document.createElement("img");
-
-                        imageElement.setAttribute('src', e.target.result);
-                        canvas.width = imageElement.width;
-                        canvas.height = imageElement.height;
-                        var context = canvas.getContext("2d");
-                        context.drawImage(imageElement, 0, 0);
-                        var base64Image = canvas.toDataURL("image/jpeg");
-                        console.log(base64Image);
-                        $scope.data.poster = base64Image.replace(/data:image\/jpeg;base64,/g, '');
+                        $scope.data.poster = e.target.result.replace(/data:image\/jpeg;base64,/g, '');
                     }
 
                     //Renders Image on Page
@@ -131,7 +125,7 @@
                     }
                     $http.get(global.url + "api/producer").then(function (response) {
                         $scope.producerList = response.data;
-                        $('.modal').style.display = "none";
+                        //$('.modal').style.display = "none";
                     })
 
                 })
@@ -143,16 +137,18 @@
             $scope.redirect = function () {
                 $location.url("/addmovie");
             }
-            $http.get(global.url + "api/Movies").then(
-                function (response) {
-                    console.log(response);
-                    $scope.dataList = response.data;
-                    $scope.dataArray = chunks.divide($scope.dataList, 3);
-                    console.log($scope.dataArray);
-                    $scope.image = response.data.poster;
-                }, function (response) {
-                    console.log(response)
-                })
+                    $http.get(global.url + "api/Movies").then(
+                        function (response) {
+                            console.log(response);
+                            $scope.dataList = response.data;
+                            $scope.image = response.data.poster;
+                            global.movieList = $scope.dataList;
+                        }, function (response) {
+                            console.log(response)
+                        })
+
+            isFirstLoad = false;
+            
             $scope.editData = {
                 "name": "",
                 "sex": "",
@@ -267,5 +263,62 @@
                         $scope.ErrorMessage = "failed to add Data"
                     })
                 }
+            }
+        }])
+    .controller('AddActor', ['$scope', '$http', '$log', 'global', '$location', 'localStorageService', 'chunks',
+        function ($scope, $http, $log, global, $location, localStorageService, chunks) {
+            $scope.actorData = {
+                "name": "",
+                "sex": "",
+                "date_of_birth": "",
+                "bio": ""
+            }
+            $http.get(global.url + "api/Actor").then(function (response) {
+                console.log(response);
+                $scope.actorList = response.data;
+            })
+            $scope.addProducer = function (actorData) {
+                $http.put(global.url + "api/Producer", actorData).then(function (response) {
+                    $scope.successMessage = "Producer Detail Successfully Addded "
+                    $scope.actorData = {
+                        "name": "",
+                        "sex": "",
+                        "date_of_birth": "",
+                        "bio": ""
+                    }
+                    $http.get(global.url + "api/producer").then(function (response) {
+                        $scope.producerList = response.data;
+                        //$('.modal').style.display = "none";
+                    })
+
+                })
+            }
+        }])
+    .controller('AddProducer', ['$scope', '$http', '$log', 'global', '$location', 'localStorageService', 'chunks',
+        function ($scope, $http, $log, global, $location, localStorageService, chunks) {
+            $scope.actorData = {
+                "name": "",
+                "sex": "",
+                "date_of_birth": "",
+                "bio": ""
+            }
+            $http.get(global.url + "api/Producer").then(function (response) {
+                console.log(response);
+                $scope.producerList = response.data;
+            })
+            $scope.addActor = function (actorData) {
+                $http.put(global.url + "api/Actor", actorData).then(function (response) {
+                    $scope.successMessage = "Actor Detail Successfully Addded "
+                    $scope.actorData = {
+                        "name": "",
+                        "sex": "",
+                        "date_of_birth": "",
+                        "bio": ""
+                    }
+                    $http.get(global.url + "api/Actor").then(function (response) {
+                        $scope.actorList = response.data;
+                    })
+
+                })
             }
         }])

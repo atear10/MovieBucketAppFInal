@@ -1,3 +1,6 @@
+
+
+
 .select {
     height: 60px;
     overflow: scroll;
@@ -514,7 +517,8 @@ li.active > a {
 /* my page */
 .mypage {
     text-align: center;
-    background-color: lightgrey ;
+    /*background-color: lightgrey ;*/
+    background: url("../images/texture2.jpg");
 }
 
 .mypage-header {
