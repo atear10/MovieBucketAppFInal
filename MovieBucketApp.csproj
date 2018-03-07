@@ -143,9 +143,9 @@
     <Content Include="js\custom.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\multiselect.js" />
-    <Content Include="js\portalApp.js" />
-    <Content Include="js\portalConfig.js" />
-    <Content Include="js\portalController.js" />
+    <Content Include="app\portalApp.js" />
+    <Content Include="app\portalConfig.js" />
+    <Content Include="app\portalController.js" />
     <Content Include="js\tether.js" />
     <Content Include="js\tether.min.js" />
     <Content Include="packages\AngularJS.Core.1.6.4\content\Scripts\angular-mocks.js" />
