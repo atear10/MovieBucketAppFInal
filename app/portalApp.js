@@ -20,8 +20,8 @@ portalApp.factory("chunks", function () {
 portalApp.service('global', ['$http',function ($http) {
     var self = this;
     self.years = [];
-    self.url = "http://localhost:60011/"
-   // self.url = "http://moviebucketwebapi.apphb.com/"
+    //self.url = "http://localhost:60011/"
+    self.url = "http://moviebucketwebapi.apphb.com/"
   $http.get(self.url + "api/Producer").then(function (response) {
         console.log(response);
         self.producerList = response.data;
