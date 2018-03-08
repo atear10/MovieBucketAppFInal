@@ -74,9 +74,19 @@
                             data: $scope.data,
                             method: "POST"
                         }).then(function () {
-                            //global.movieId = "/";
-                            $location.url()
-                            console.log("Success");
+                            $scope.errorMessage = '';
+                            $scope.successMessage = "Movie added Successfully to Database"
+                            $http.get(global.url + "api/movies").then(function (response) {
+                                global.movieList = response.data;
+                                $scope.data = {
+                                    "movie_name": "",
+                                    "plot": "",
+                                    "producer": {},
+                                    "producer_id": "",
+                                    "Actors": [],
+                                    "year_of_release": "",
+                                }
+                            })
                         }, function () {
                             console.log("failed");
                         });
