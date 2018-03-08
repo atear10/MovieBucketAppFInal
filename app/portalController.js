@@ -8,21 +8,23 @@
         function ($scope, $http, $log, global, $location, localStorageService, chunks) {
             $scope.successMessage = '';
             $scope.errorMessage = '';
-            $scope.data = {
-                "movie_name": "",
-                "plot": "",
-                "producer": {},
-                "producer_id": "",
-                "actors": [],
-                "year_of_release": "",
-            }
+            
             if (global.movieData != undefined) {
-                
+
                 $scope.data = global.movieData;
+                global.movieData = {};
                 console.log($scope.data)
                 $scope.image = $scope.data.poster;
-                global.data = {};
-            } 
+            } else {
+                $scope.data = {
+                    "movie_name": "",
+                    "plot": "",
+                    "producer": {},
+                    "producer_id": "",
+                    "Actors": [],
+                    "year_of_release": "",
+                }
+            }
             $scope.actorData = {
                 "name": "",
                 "sex": "",
@@ -43,44 +45,63 @@
             console.log(global.years);
             console.log(global.producerList);
             
+            $scope.Validation = {
+                "name": true,
+                "plot": true,
+                "year_of_release": true,
+                "poster": true,
+                "producer": true,
+                "Actors": true
+            }
 
             $scope.submit = function () {
-                if (global.movieEdit) {
-                    $scope.data.producer_id = $scope.data.producer.producer_id;
-                    console.log($scope.data)
-                    $http({
-                        url: global.url + "api/movies?movieId=" + global.movie_id,
-                        data: $scope.data,
-                        method: "POST"
-                    }).then(function () {
-                        global.movieId = "/";
-                        $location.url()
-                        console.log("Success");
-                    }, function () {
-                        console.log("failed");
-                    });
+                $scope.Validation = {
+                    "name": angular.isDefined($scope.data.movie_name) && $scope.data.movie_name != '',
+                    "plot": angular.isDefined($scope.data.plot) && $scope.data.plot != '',
+                    "year_of_release": angular.isDefined($scope.data.year_of_release) && $scope.data.year_of_release != '',
+                    "poster": angular.isDefined($scope.data.poster) && $scope.data.poster != '',
+                    "producer": "name" in $scope.data.producer,
+                    "Actors": $scope.data.Actors.length > 0
                 }
-                else {
-                    $scope.data.producer_id = $scope.data.producer.producer_id;
-                    //$scope.image = $scope.data.poster;
-                    console.log($scope.data)
-                    $http({
-                        url: global.url + "api/movies",
-                        data: $scope.data,
-                        method: "PUT"
-                    }).then(function (response) {
-                        $scope.errorMessage = '';
-                        $scope.successMessage = "Movie added Successfully to Database"
-                        $location.url("/");
-                        console.log("Success");
+                console.log($scope.Validation);
+                $scope.validData = $scope.Validation.name && $scope.Validation.plot && $scope.Validation.year_of_release && $scope.Validation.producer && $scope.Validation.Actors && $scope.Validation.poster;
+                if ($scope.validData) {
+                    if (global.movieEdit) {
+                        $scope.data.producer_id = $scope.data.producer.producer_id;
+                        console.log($scope.data)
+                        $http({
+                            url: global.url + "api/movies?movieId=" + global.movie_id,
+                            data: $scope.data,
+                            method: "POST"
+                        }).then(function () {
+                            global.movieId = "/";
+                            $location.url()
+                            console.log("Success");
+                        }, function () {
+                            console.log("failed");
+                        });
+                    }
+                    else {
+                        $scope.data.producer_id = $scope.data.producer.producer_id;
+                        //$scope.image = $scope.data.poster;
+                        console.log($scope.data)
+                        $http({
+                            url: global.url + "api/movies",
+                            data: $scope.data,
+                            method: "PUT"
+                        }).then(function (response) {
+                            $scope.errorMessage = '';
+                            $scope.successMessage = "Movie added Successfully to Database"
+                            $location.url("/");
+                            console.log("Success");
                         }, function (response, error) {
                             console.log(response)
                             $scope.successMessage = '';
                             $scope.errorMessage = "Failed to add movie to list : " + error;
-                        console.log("failed");
-                    });
+                            console.log("failed");
+                        });
+                    }
                 }
-                
             }
 
             $scope.uploadFile = function (input) {
@@ -137,17 +158,20 @@
             $scope.redirect = function () {
                 $location.url("/addmovie");
             }
-                    $http.get(global.url + "api/Movies").then(
-                        function (response) {
-                            console.log(response);
-                            $scope.dataList = response.data;
-                            $scope.image = response.data.poster;
-                            global.movieList = $scope.dataList;
-                        }, function (response) {
-                            console.log(response)
-                        })
-
-            isFirstLoad = false;
+           
+            if (!global.movieList.length > 0) {
+                $http.get(global.url + "api/Movies").then(
+                    function (response) {
+                        console.log(response);
+                        $scope.dataList = response.data;
+                        $scope.image = response.data.poster;
+                        global.movieList = $scope.dataList;
+                    }, function (response) {
+                        console.log(response)
+                    })
+            } else {
+                $scope.dataList = global.movieList;
+            }
             
             $scope.editData = {
                 "name": "",
@@ -181,15 +205,14 @@
                 $location.url("/Info");
             }
             $scope.deleteMovie = function (data) {
-                if (global.Role == "producer") {
                     var url = global.url +  "api/Movies?movieId=" + data.movie_id;
                     $http.delete(url).then(function (response) {
                         $http.get(global.url + "api/Movies").then(function (response) {
-                            $$scope.dataList = response.data;
+                            $scope.dataList = response.data;
+                            global.movieList = $scope.dataList;
                         })
                         $scope.successMessage = "Deleted a Movie Successfully";
                     });
-                }
             }
             $scope.redirectEdit = function (data) {
                 global.movieData = data;

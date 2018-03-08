@@ -265,6 +265,14 @@ body {
     overflow-x: hidden;
 }
 
+.input-textarea {
+    display: block;
+    height: 150px;
+    width: 100%;
+    padding: 10px 5px 10px 5px;
+    border: 1px solid lightgray;
+}
+
 .input-text {
     display: block;
     height: 37px;
@@ -531,6 +539,10 @@ li.active > a {
     padding-bottom: 50px;
     height: 65vh;
     overflow: auto;
+}
+
+td{
+    margin : 30px 0px;
 }
 
 .customtable {
