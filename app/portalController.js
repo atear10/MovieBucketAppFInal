@@ -336,7 +336,7 @@
                 console.log(response);
                 $scope.producerList = response.data;
             })
-            $scope.addproducer = function (actorData) {
+            $scope.addProducer = function (actorData) {
                 $http.put(global.url + "api/producer", actorData).then(function (response) {
                     $scope.successMessage = "producer Detail Successfully Addded "
                     $scope.actorData = {
@@ -345,8 +345,8 @@
                         "date_of_birth": "",
                         "bio": ""
                     }
-                    $http.get(global.url + "api/Actor").then(function (response) {
-                        $scope.actorList = response.data;
+                    $http.get(global.url + "api/producer").then(function (response) {
+                        global.actorList = response.data;
                     })
 
                 })
