@@ -3,20 +3,20 @@
     <div class="login-text font-calibri" style="display: inline-block">
                 <table >
                     <tr>
-                        <td ><strong>Name : </strong></td>
-                        <td > <input type="text" id="name" class="input-text" ng-model="actorData.name" /></td>
+                        <td  class="class="col-form-label-lg"><strong>Name : </strong></td>
+                        <td class="class="col-form-label-lg"> <input type="text" id="name" class="input-text" ng-model="actorData.name" /></td>
                     </tr>
                     <tr>
-                        <td><strong>sex :</strong></td>
-                        <td><input type="text" id="name" class="input-text" ng-model="actorData.sex" /></td>
+                        <td class="col-form-label-lg"><strong>sex :</strong></td>
+                        <td class="class="col-form-label-lg"><input type="text" id="name" class="input-text" ng-model="actorData.sex" /></td>
                     </tr>
                     <tr>
-                        <td><strong>Date of Birth :</strong></td>
-                        <td><input type="date" id="name" class="input-text" ng-model="actorData.date_of_birth" /></td>
+                        <td class="col-form-label-lg"><strong>Date of Birth :</strong></td>
+                        <td class="class="col-form-label-lg"><input type="date" id="name" class="input-text" ng-model="actorData.date_of_birth" /></td>
                     </tr>
                     <tr>
-                        <td><strong>Bio :</strong></td>
-                        <td><textarea id="name" class="input-textareat" ng-model="actorData.bio" /></td>
+                        <td class="col-form-label-lg"><strong>Bio :</strong></td>
+                        <td class="class="col-form-label-lg"><textarea id="name" class="input-textarea" ng-model="actorData.bio" /></td>
                     </tr>
                 </table>
             </div>
@@ -24,7 +24,7 @@
             <div class="alert-danger" ng-if="errorMessage != ''"><p>{{errorMessage}}</p></div>
             <div>
                 <button id="modalbtnadd" class="btn btn-primary" style="width:10%" ng-click="addActor(actorData)">
-                    Add
+                    Add Actor
                 </button>
             </div>
         </div>

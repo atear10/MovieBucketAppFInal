@@ -74,7 +74,7 @@
                             data: $scope.data,
                             method: "POST"
                         }).then(function () {
-                            global.movieId = "/";
+                            //global.movieId = "/";
                             $location.url()
                             console.log("Success");
                         }, function () {
@@ -158,8 +158,8 @@
             $scope.redirect = function () {
                 $location.url("/addmovie");
             }
-           
-            if (!global.movieList.length > 0) {
+            $scope.dataList = global.mivieList;
+            //if (!global.movieList.length > 0) {
                 $http.get(global.url + "api/Movies").then(
                     function (response) {
                         console.log(response);
@@ -169,9 +169,9 @@
                     }, function (response) {
                         console.log(response)
                     })
-            } else {
-                $scope.dataList = global.movieList;
-            }
+            //} else {
+             //   $scope.dataList = global.movieList;
+           // }
             
             $scope.editData = {
                 "name": "",
@@ -296,21 +296,17 @@
                 "date_of_birth": "",
                 "bio": ""
             }
-            $http.get(global.url + "api/Actor").then(function (response) {
-                console.log(response);
-                $scope.actorList = response.data;
-            })
-            $scope.addProducer = function (actorData) {
-                $http.put(global.url + "api/Producer", actorData).then(function (response) {
-                    $scope.successMessage = "Producer Detail Successfully Addded "
+            $scope.addActor = function (actorData) {
+                $http.put(global.url + "api/actor", actorData).then(function (response) {
+                    $scope.successMessage = "actor Detail Successfully Addded "
                     $scope.actorData = {
                         "name": "",
                         "sex": "",
                         "date_of_birth": "",
                         "bio": ""
                     }
-                    $http.get(global.url + "api/producer").then(function (response) {
-                        $scope.producerList = response.data;
+                    $http.get(global.url + "api/actor").then(function (response) {
+                        global.acterList = response.data;
                         //$('.modal').style.display = "none";
                     })
 
@@ -329,9 +325,9 @@
                 console.log(response);
                 $scope.producerList = response.data;
             })
-            $scope.addActor = function (actorData) {
-                $http.put(global.url + "api/Actor", actorData).then(function (response) {
-                    $scope.successMessage = "Actor Detail Successfully Addded "
+            $scope.addproducer = function (actorData) {
+                $http.put(global.url + "api/producer", actorData).then(function (response) {
+                    $scope.successMessage = "producer Detail Successfully Addded "
                     $scope.actorData = {
                         "name": "",
                         "sex": "",
