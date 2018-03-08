@@ -92,7 +92,18 @@
                         }).then(function (response) {
                             $scope.errorMessage = '';
                             $scope.successMessage = "Movie added Successfully to Database"
-                            $location.url("/");
+                            $http.get(global.url + "api/movies").then(function (response) {
+                                global.movieList = response.data;
+                                $scope.data = {
+                                    "movie_name": "",
+                                    "plot": "",
+                                    "producer": {},
+                                    "producer_id": "",
+                                    "Actors": [],
+                                    "year_of_release": "",
+                                }
+                            })
+                           
                             console.log("Success");
                         }, function (response, error) {
                             console.log(response)
@@ -158,7 +169,7 @@
             $scope.redirect = function () {
                 $location.url("/addmovie");
             }
-            $scope.dataList = global.mivieList;
+            $scope.dataList = global.movieList;
             //if (!global.movieList.length > 0) {
                 $http.get(global.url + "api/Movies").then(
                     function (response) {
